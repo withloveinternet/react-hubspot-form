@@ -1,15 +1,20 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Img from '../src/index'
+import HubspotForm from '../src/index'
 
 const containerEl = document.createElement('div')
 document.body.appendChild(containerEl)
 
 render(
-	<Img
-		src='http://via.placeholder.com/500x1000'
-		width={500}
-		height={1000}
-	/>,
+	<HubspotForm onSubmit={e => console.log('Success!')}>
+		<form>
+			<div>
+				<input type='text' />
+			</div>
+			<div>
+				<button>Submit</button>
+			</div>
+		</form>
+	</HubspotForm>,
 	containerEl
 )
