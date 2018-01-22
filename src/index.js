@@ -19,6 +19,13 @@ export default class extends React.Component {
 		}
 		// Hubspot stuff here
 
+		let data = new FormData(e.target)
+		let result = {}
+		for (let entry of data.entries()) {
+			result[entry[0]] = entry[1]
+		}
+		console.log(result)
+
 		if(this.props.onSuccess){
 			this.props.onSuccess()
 		}

@@ -9,7 +9,7 @@ render(
 	<HubspotForm onSubmit={e => console.log('Success!')}>
 		<form>
 			<div>
-				<input type='text' />
+				<input type='text' name='test' />
 			</div>
 			<div>
 				<button>Submit</button>
