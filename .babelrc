@@ -1,0 +1,18 @@
+{
+	"presets": [
+		"react"
+	],
+	"env": {
+		"es5": {
+			"presets": [
+				"es2015"
+			]
+		}
+	},
+	"plugins": [
+		"syntax-dynamic-import",
+		["transform-react-remove-prop-types", {
+			"mode": "wrap"
+		}]
+	]
+}
