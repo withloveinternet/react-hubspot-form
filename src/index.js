@@ -43,6 +43,7 @@ export default class extends React.Component {
 			}),
 			...data,
 		})
+		console.log('SENDING HUBSPOT:', data)
 		try{
 			let res = await fetch(`https://forms.hubspot.com/uploads/form/v2/${this.props.hubspotId}/${this.props.formId}`, {
 				method: 'POST',
