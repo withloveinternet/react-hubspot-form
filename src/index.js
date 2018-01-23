@@ -35,15 +35,16 @@ export default class extends React.Component {
 		}
 		let pageName = document.querySelector('title')
 		pageName = pageName ? pageName.textContent : ''
-		data = querystring.stringify({
+		data = {
+			...result,
 			hs_context: JSON.stringify({
 				hutk: hutk,
 				pageUrl: window.location.href,
 				pageName: pageName,
 			}),
-			...data,
-		})
+		}
 		console.log('SENDING HUBSPOT:', data)
+		data = querystring.stringify(data)
 		try{
 			let res = await fetch(`https://forms.hubspot.com/uploads/form/v2/${this.props.hubspotId}/${this.props.formId}`, {
 				method: 'POST',
