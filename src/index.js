@@ -46,14 +46,18 @@ export default class extends React.Component {
 		console.log('SENDING HUBSPOT:', data)
 		data = querystring.stringify(data)
 		try{
-			let res = await fetch(`https://forms.hubspot.com/uploads/form/v2/${this.props.hubspotId}/${this.props.formId}`, {
+			let url = `https://forms.hubspot.com/uploads/form/v2/${this.props.hubspotId}/${this.props.formId}`
+			let options = {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
 					'Content-Length': data.length
 				},
 				body: data,
-			})
+			}
+			console.log('URL:', url)
+			console.log('OPTIONS:', JSON.stringify(options, null, 3))
+			let res = await fetch(url, options)
 			console.log('RES:', res)
 		}
 		catch(err){

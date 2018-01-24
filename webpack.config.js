@@ -3,6 +3,9 @@ const webpack = require('webpack')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const plugins = []
+
+console.log('PRODUCTION:', process.env.NODE_ENV)
+
 if (process.env.ANALYZE) {
 	plugins.push(new BundleAnalyzerPlugin({
 		analyzerMode: 'server',
