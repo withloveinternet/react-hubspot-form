@@ -17,7 +17,8 @@
     "analyze": "esca-scripts analyze --react --component --input ./src/index.js",
     "build": "esca-scripts build --input ./src/index.js --output ./dist/index.js --react --component",
     "dev": "esca-scripts dev ---input './dev/dev.js, ./dev/index.html' --react --browser",
-    "prepublishOnly": "npm run build"
+	 "prepublishOnly": "npm run build",
+	 "travis": "opn https://travis-ci.org/escaladesports/react-hubspot-form/branches"
   },
   "devDependencies": {
     "esca-scripts": "^0.12.1",
