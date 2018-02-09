@@ -1,24 +1,15 @@
 import React from 'react'
 import { render } from 'react-dom'
-import HubspotForm from '../src/index'
+import HubspotForm from '../src'
 
 const containerEl = document.createElement('div')
 document.body.appendChild(containerEl)
 
 render(
 	<HubspotForm
-		onSubmit={e => console.log('Success!')}
-		hubspotId='4111488'
-		formId='d9099643-7ccf-4305-988d-cb9ff9c1468a'
-		>
-		<form>
-			<div>
-				<input type='text' name='Email' />
-			</div>
-			<div>
-				<button>Submit</button>
-			</div>
-		</form>
-	</HubspotForm>,
+		portalId='4111488'
+		formId='82941100-1bbc-406e-8d63-f7232304738c'
+	/>,
 	containerEl
 )
+

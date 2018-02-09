@@ -1,79 +1,50 @@
 import React from 'react'
-import fetch from 'isomorphic-fetch'
-import querystring from 'querystring'
-import cookies from 'js-cookie'
+
+let globalId = 0
+let scriptLoaded = false
 
 export default class extends React.Component {
 	constructor(props){
 		super(props)
-		this.formSubmit = this.formSubmit.bind(this)
+		this.state = {}
+		this.elId = globalId++
+		this.createForm = this.createForm.bind(this)
+		this.createFormInterval = this.createFormInterval.bind(this)
+		this.loadScript = this.loadScript.bind(this)
+	}
+	createFormInterval(){
+		if(!this.createForm()){
+			setTimeout(this.createForm, 1)
+		}
+	}
+	createForm(){
+		if(window.hbspt){
+			const options = {
+				...this.props,
+				target: `#reactHubspotForm${this.elId}`,
+			}
+			window.hbspt.forms.create(options)
+			return true
+		}
+	}
+	loadScript(){
+		scriptLoaded = true
+		const script = document.createElement('script')
+		script.onload = this.createForm
+		script.src = `//js.hsforms.net/forms/v2.js`
+		document.head.appendChild(script)
 	}
 	componentDidMount(){
-		this.form = this.parent.querySelector('form')
-		if(this.form){
-			this.form.addEventListener('submit', this.formSubmit)
+		if(!scriptLoaded && !this.props.noScript){
+			this.loadScript()
 		}
-	}
-	async formSubmit(e){
-		e.preventDefault()
-
-		// Run onSubmit at the same time as Hubspot code
-		if(this.props.onSubmit){
-			this.props.onSubmit()
-		}
-
-		let hutk = cookies.get('hubspotutk')
-		if(!hutk){
-			return console.log('hubspotutk not found')
-		}
-
-		// Get form data
-		let data = new FormData(this.form)
-		let result = {}
-		for (let entry of data.entries()) {
-			result[entry[0]] = entry[1]
-		}
-		let pageName = document.querySelector('title')
-		pageName = pageName ? pageName.textContent : ''
-		data = {
-			...result,
-			hs_context: JSON.stringify({
-				hutk: hutk,
-				pageUrl: window.location.href,
-				pageName: pageName,
-			}),
-		}
-		console.log('SENDING HUBSPOT:', data)
-		data = querystring.stringify(data)
-		try{
-			let url = `https://forms.hubspot.com/uploads/form/v2/${this.props.hubspotId}/${this.props.formId}`
-			let options = {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'Content-Length': data.length
-				},
-				body: data,
-			}
-			console.log('URL:', url)
-			console.log('OPTIONS:', JSON.stringify(options, null, 3))
-			let res = await fetch(url, options)
-			console.log('RES:', res)
-		}
-		catch(err){
-			console.log(err)
-		}
-
-		// Run onSuccess after Hubspot code
-		if(this.props.onSuccess){
-			this.props.onSuccess()
+		else{
+			this.createFormInterval()
 		}
 	}
 	render(){
 		return (
-			<div ref={el => this.parent = el}>
-				{ this.props.children }
-			</div>
+			<div id={`reactHubspotForm${this.elId}`} />
 		)
 	}
 }
