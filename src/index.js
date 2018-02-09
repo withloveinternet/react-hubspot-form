@@ -3,7 +3,7 @@ import React from 'react'
 let globalId = 0
 let scriptLoaded = false
 
-export default class extends React.Component {
+export default class HubspotForm extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {}

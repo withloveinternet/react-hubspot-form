@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import HubspotForm from '../src'
+import HubspotForm from '../dist'
 
 const containerEl = document.createElement('div')
 document.body.appendChild(containerEl)
