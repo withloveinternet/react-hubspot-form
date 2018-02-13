@@ -1,7 +1,5 @@
 # react-hubspot-form
 
-Work in progress!
-
 A React component to render HubSpot forms.
 
 ## Installation
