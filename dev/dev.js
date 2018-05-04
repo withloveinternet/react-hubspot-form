@@ -13,11 +13,7 @@ class Forms extends React.Component{
 					portalId='4111488'
 					formId='82941100-1bbc-406e-8d63-f7232304738c'
 					onSubmit={() => console.log('SUBMIT')}
-				/>
-				<HubspotForm
-					portalId='4111488'
-					formId='82941100-1bbc-406e-8d63-f7232304738c'
-					onSubmit={() => console.log('SUBMIT')}
+					loading={<p>Loading...</p>}
 				/>
 			</div>
 		)
