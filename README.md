@@ -25,7 +25,8 @@ import HubspotForm from 'react-hubspot-form'
 
 <HubspotForm
 	portalId='your_portal_id'
-	formId='your_form_id'
+   formId='your_form_id'
+   onSubmit={() => console.log('Submit!')}
 />
 ```
 
