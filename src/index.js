@@ -21,6 +21,7 @@ class HubspotForm extends React.Component {
 				...this.props
 			}
 			delete props.loading
+			delete props.onSubmit
 			let options = {
 				...props,
 				target: `#${this.el.getAttribute(`id`)}`,

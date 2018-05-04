@@ -27,6 +27,7 @@ import HubspotForm from 'react-hubspot-form'
 	portalId='your_portal_id'
    formId='your_form_id'
    onSubmit={() => console.log('Submit!')}
+   loading={<div>Loading...</div>}
 />
 ```
 
