@@ -1,6 +1,6 @@
 {
   "name": "react-hubspot-form",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "keywords": [
     "react",
     "hubspot",
@@ -17,8 +17,8 @@
     "analyze": "esca-scripts analyze --react --component --input ./src/index.js",
     "build": "esca-scripts build --input ./src/index.js --output ./dist/index.js --react --component --babel",
     "dev": "esca-scripts dev ---input './dev/dev.js, ./dev/index.html' --react --browser",
-	 "prepublishOnly": "npm run build",
-	 "test": "echo 'no test'",
+    "prepublishOnly": "npm run build",
+    "test": "echo 'no test'",
     "travis": "opn https://travis-ci.org/escaladesports/react-hubspot-form/branches"
   },
   "devDependencies": {
