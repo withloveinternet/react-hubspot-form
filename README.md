@@ -18,7 +18,7 @@ yarn add react-hubspot-form
 
 ## Usage
 
-```javascript
+```jsx
 import HubspotForm from 'react-hubspot-form'
 
 ...
