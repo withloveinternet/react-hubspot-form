@@ -46,6 +46,9 @@ class HubspotForm extends React.Component {
 		if(form){
 			this.setState({ loaded: true })
 			form.addEventListener(`submit`, this.onSubmit)
+			if (this.props.onReady) {
+				this.props.onReady(form);
+			}
 		}
 		else{
 			setTimeout(this.findFormElement, 1)
@@ -69,11 +72,6 @@ class HubspotForm extends React.Component {
 	}
 	componentWillUnmount() {
 		clearInterval(this.onSubmitInterval)
-	}
-	componentDidUpdate(prevProps, prevState) {
-		if (this.state.loaded && !prevState.loaded && this.props.onReady) {
-			this.props.onReady(this.el);
-		}
 	}
 	render() {
 		return (
