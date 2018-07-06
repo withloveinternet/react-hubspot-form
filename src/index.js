@@ -22,6 +22,7 @@ class HubspotForm extends React.Component {
 			}
 			delete props.loading
 			delete props.onSubmit
+			delete props.onReady
 			let options = {
 				...props,
 				target: `#${this.el.getAttribute(`id`)}`,
@@ -45,15 +46,19 @@ class HubspotForm extends React.Component {
 		if(form){
 			this.setState({ loaded: true })
 			form.addEventListener(`submit`, this.onSubmit)
+			if (this.props.onReady) {
+				this.props.onReady(form);
+			}
 		}
 		else{
 			setTimeout(this.findFormElement, 1)
 		}
 	}
 	onSubmit(){
-		let interval = setInterval(() => {
+		clearInterval(this.onSubmitInterval)
+		this.onSubmitInterval = setInterval(() => {
 			if(!this.el.querySelector(`form`)){
-				clearInterval(interval)
+				clearInterval(this.onSubmitInterval)
 				if(this.props.onSubmit){
 					this.props.onSubmit()
 				}
@@ -64,6 +69,9 @@ class HubspotForm extends React.Component {
 		this.loadScript()
 		this.createForm()
 		this.findFormElement()
+	}
+	componentWillUnmount() {
+		clearInterval(this.onSubmitInterval)
 	}
 	render() {
 		return (
