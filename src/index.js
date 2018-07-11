@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 let globalId = 0
-let scriptLoaded = Boolean(window.hbspt)
 
 class HubspotForm extends React.Component {
 	constructor(props) {
@@ -35,6 +34,7 @@ class HubspotForm extends React.Component {
 		}
 	}
 	loadScript() {
+		let scriptLoaded = !!window.hbspt
 		if(scriptLoaded || this.props.noScript) return
 		scriptLoaded = true
 		let script = document.createElement(`script`)
