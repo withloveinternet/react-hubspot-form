@@ -18,7 +18,7 @@ class HubspotForm extends React.Component {
 		if (window.hbspt) {
 			// protect against component unmounting before window.hbspt is available
 			if (this.el === null) {
-				return;
+				return
 			}
 			let props = {
 				...this.props
@@ -48,7 +48,7 @@ class HubspotForm extends React.Component {
 	findFormElement(){
 		// protect against component unmounting before form is added
 		if (this.el === null) {
-			return;
+			return
 		}
 		let form = this.el.querySelector(`form`)
 		if(form){
