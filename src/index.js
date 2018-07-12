@@ -17,6 +17,10 @@ class HubspotForm extends React.Component {
 	}
 	createForm() {
 		if (window.hbspt) {
+			// protect against component unmounting before window.hbspt is available
+			if (this.el === null) {
+				return;
+			}
 			let props = {
 				...this.props
 			}
@@ -42,6 +46,10 @@ class HubspotForm extends React.Component {
 		document.head.appendChild(script)
 	}
 	findFormElement(){
+		// protect against component unmounting before form is added
+		if (this.el === null) {
+			return;
+		}
 		let form = this.el.querySelector(`form`)
 		if(form){
 			this.setState({ loaded: true })
