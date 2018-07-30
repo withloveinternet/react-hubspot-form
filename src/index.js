@@ -65,7 +65,7 @@ class HubspotForm extends React.Component {
 	onSubmit(){
 		clearInterval(this.onSubmitInterval)
 		this.onSubmitInterval = setInterval(() => {
-			if(!this.el.querySelector(`form`)){
+			if(!this.el.querySelector(`iframe`)){
 				clearInterval(this.onSubmitInterval)
 				if(this.props.onSubmit){
 					this.props.onSubmit()
