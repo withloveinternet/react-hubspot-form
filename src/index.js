@@ -50,7 +50,7 @@ class HubspotForm extends React.Component {
 		if (this.el === null) {
 			return
 		}
-		let form = this.el.querySelector(`form`)
+		let form = this.el.querySelector(`iframe`)
 		if(form){
 			this.setState({ loaded: true })
 			form.addEventListener(`submit`, this.onSubmit)
