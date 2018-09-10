@@ -42,6 +42,13 @@ class HubspotForm extends React.Component {
 		if(scriptLoaded || this.props.noScript) return
 		scriptLoaded = true
 		let script = document.createElement(`script`)
+    script.defer = true
+
+    script.onload = () => {
+      this.createForm()
+      this.findFormElement()
+    }
+
 		script.src = `//js.hsforms.net/forms/v2.js`
 		document.head.appendChild(script)
 	}
@@ -75,8 +82,6 @@ class HubspotForm extends React.Component {
 	}
 	componentDidMount() {
 		this.loadScript()
-		this.createForm()
-		this.findFormElement()
 	}
 	componentWillUnmount() {
 		clearInterval(this.onSubmitInterval)
