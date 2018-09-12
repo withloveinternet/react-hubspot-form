@@ -38,9 +38,6 @@ class HubspotForm extends React.Component {
 		}
 	}
 	loadScript() {
-		let scriptLoaded = !!window.hbspt
-		if(scriptLoaded || this.props.noScript) return
-		scriptLoaded = true
 		let script = document.createElement(`script`)
 		script.defer = true
 		script.onload = () => {
@@ -79,7 +76,12 @@ class HubspotForm extends React.Component {
 		}, 1)
 	}
 	componentDidMount() {
-		this.loadScript()
+		if (!window.hbspt && !this.props.noScript) {
+			this.loadScript()
+		} else {
+			this.createForm()
+			this.findFormElement()
+		}
 	}
 	componentWillUnmount() {
 		clearInterval(this.onSubmitInterval)
