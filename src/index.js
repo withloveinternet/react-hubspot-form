@@ -12,7 +12,6 @@ class HubspotForm extends React.Component {
 		this.id = globalId++
 		this.createForm = this.createForm.bind(this)
 		this.findFormElement = this.findFormElement.bind(this)
-		this.onSubmit = this.onSubmit.bind(this)
 	}
 	createForm() {
 		if (window.hbspt) {
@@ -29,6 +28,7 @@ class HubspotForm extends React.Component {
 			let options = {
 				...props,
 				target: `#${this.el.getAttribute(`id`)}`,
+				onFormSubmit : this.props.onSubmit
 			}
 			window.hbspt.forms.create(options)
 			return true
@@ -55,7 +55,6 @@ class HubspotForm extends React.Component {
 		let form = this.el.querySelector(`iframe`)
 		if(form){
 			this.setState({ loaded: true })
-			form.addEventListener(`submit`, this.onSubmit)
 			if (this.props.onReady) {
 				this.props.onReady(form);
 			}
@@ -63,17 +62,6 @@ class HubspotForm extends React.Component {
 		else{
 			setTimeout(this.findFormElement, 1)
 		}
-	}
-	onSubmit(){
-		clearInterval(this.onSubmitInterval)
-		this.onSubmitInterval = setInterval(() => {
-			if(!this.el.querySelector(`iframe`)){
-				clearInterval(this.onSubmitInterval)
-				if(this.props.onSubmit){
-					this.props.onSubmit()
-				}
-			}
-		}, 1)
 	}
 	componentDidMount() {
 		if (!window.hbspt && !this.props.noScript) {
@@ -84,7 +72,6 @@ class HubspotForm extends React.Component {
 		}
 	}
 	componentWillUnmount() {
-		clearInterval(this.onSubmitInterval)
 	}
 	render() {
 		return (
