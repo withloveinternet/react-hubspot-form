@@ -28,7 +28,7 @@ class HubspotForm extends React.Component {
 			let options = {
 				...props,
 				target: `#${this.el.getAttribute(`id`)}`,
-				onFormSubmit : this.props.onSubmit
+				onFormSubmit : this.props.onSubmit // ref: https://developers.hubspot.com/docs/methods/forms/advanced_form_options
 			}
 			window.hbspt.forms.create(options)
 			return true
