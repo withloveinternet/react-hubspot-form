@@ -28,9 +28,9 @@ class HubspotForm extends React.Component {
 			let options = {
 				...props,
 				target: `#${this.el.getAttribute(`id`)}`,
-				onFormSubmit : ($form) => {
+				onFormSubmit : (formData) => {
 					// ref: https://developers.hubspot.com/docs/methods/forms/advanced_form_options
-					var formData = $form.serializeArray();
+					//var formData = $form.serializeArray();
 					this.props.onSubmit(formData);	
 				}
 			}
